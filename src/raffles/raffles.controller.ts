@@ -26,8 +26,7 @@ export class RafflesController {
   }
 
   @Post()
-  create(@Body() createRaffleDto) {
-    //CreateRaffleDto
+  create(@Body() createRaffleDto: CreateRaffleDto) {
     return this.rafflesService.create(createRaffleDto);
   }
 
@@ -38,15 +37,15 @@ export class RafflesController {
     return this.rafflesService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id', ParseIntPipe) id) {
-    return this.rafflesService.findOne(id);
-  }
+  // @Get(':id')
+  // findOne(@Param('id', ParseIntPipe) id) {
+  //   return this.rafflesService.findOne(id);
+  // }
 
-  @Delete(':id')
-  remove(@Param('id', ParseIntPipe) id) {
-    return this.rafflesService.remove(id);
-  }
+  // @Delete(':id')
+  // remove(@Param('id', ParseIntPipe) id) {
+  //   return this.rafflesService.remove(id);
+  // }
   // @Patch(':id')
   // update(@Param('id') id: string, @Body() updateRaffleDto: UpdateRaffleDto) {
   //   return this.rafflesService.update(+id, updateRaffleDto);

@@ -12,4 +12,4 @@ RUN npm run build
 
 COPY .env /server/dist
 
-ENTRYPOINT [ "pm2-runtime","start","/server/dist/main.js"]
+ENTRYPOINT [ "pm2-runtime","start","/server/dist/main.js","-i","max"]

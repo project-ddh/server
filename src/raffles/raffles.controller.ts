@@ -29,18 +29,32 @@ export class RafflesController {
   create(@Body() createRaffleDto: CreateRaffleDto) {
     return this.rafflesService.create(createRaffleDto);
   }
+  //bid 쓰기 테스트용
+  @Post('bid')
+  createBid(@Body() data) {
+    console.log('여기넣음');
+    return this.rafflesService.createBid(data);
+  }
 
   @Get()
   findAll() {
-    this.findAllcount++;
-    this.logger.log(`컨트롤러 findAll ${this.findAllcount}번 요청됨`);
-    return this.rafflesService.findAll();
+    // this.findAllcount++;
+    // this.logger.log(`컨트롤러 findAll ${this.findAllcount}번 요청됨`);
+    try {
+      return this.rafflesService.findAll();
+    } catch (Error) {
+      this.logger.log(Error);
+    }
   }
 
-  // @Get(':id')
-  // findOne(@Param('id', ParseIntPipe) id) {
-  //   return this.rafflesService.findOne(id);
-  // }
+  @Get(':id')
+  findOne(@Param('id', ParseIntPipe) id) {
+    try {
+      return this.rafflesService.findOne(id);
+    } catch (Error) {
+      this.logger.error(Error);
+    }
+  }
 
   // @Delete(':id')
   // remove(@Param('id', ParseIntPipe) id) {

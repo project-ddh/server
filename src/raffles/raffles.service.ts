@@ -14,12 +14,20 @@ export class RafflesService {
     console.log(`raffle create: ${JSON.stringify(raffle)}`);
     return this.raffleRepository.save(raffle);
   }
+  //bid test용
+  createBid(data) {
+    this.raffleRepository.bidsave(data);
+  }
 
   // 래플 리스트 전체 조회
   async findAll() {
     return this.raffleRepository.find();
   }
 
+  //상품 상세조회
+  async findOne(id) {
+    return this.raffleRepository.findOne(id);
+  }
   // 특정 상품 상세 조회
   // async findOne(id: number) {
   //   const currentRaffle = await this.raffleRepository.findOne({

@@ -43,6 +43,10 @@ export default class TypeOrmConfig {
       entities: [__dirname + '/../**/*.entity{.ts,.js}'],
       synchronize: true,
       logging: false,
+      //poolSize: 620,
+      // extra: {
+      //   connectionLimit: 5,
+      // },
     };
   }
 }

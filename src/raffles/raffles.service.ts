@@ -19,6 +19,11 @@ export class RafflesService {
     this.raffleRepository.bidsave(data);
   }
 
+  //redis용
+  async redisFindAll() {
+    return this.raffleRepository.redisFindAll();
+  }
+
   // 래플 리스트 전체 조회
   async findAll() {
     return this.raffleRepository.find();

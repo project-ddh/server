@@ -26,6 +26,7 @@
   "dependencies": {
     "@aws-sdk/types": "^3.266.0",
     "@jridgewell/sourcemap-codec": "^1.4.14",
+    "@liaoliaots/nestjs-redis": "^9.0.5",
     "@nestjs/class-validator": "^0.13.4",
     "@nestjs/common": "^9.0.0",
     "@nestjs/config": "^2.3.0",

@@ -1,8 +1,10 @@
+import { InjectRedis } from '@liaoliaots/nestjs-redis';
 import { Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { InjectDataSource, InjectRepository } from '@nestjs/typeorm';
 import { BidEntity } from 'src/bids/entities/bid.entity';
 import { DataSource, Repository } from 'typeorm';
 import { RaffleEntity } from './entities/raffle.entity';
+import Redis from 'ioredis';
 
 @Injectable()
 export class RaffleRepository {
@@ -15,19 +17,49 @@ export class RaffleRepository {
     private raffleRepository: Repository<RaffleEntity>,
     @InjectRepository(BidEntity)
     private bidRepository: Repository<BidEntity>,
+    @InjectRedis() private readonly redis: Redis,
   ) {
     this.logger = new Logger('raffels');
   }
+  async redisFindAll() {
+    const cachedResult = await this.redis.get('raffles');
+    if (cachedResult) {
+      console.log(`Raffle result from Redis :D `);
+      return JSON.parse(cachedResult);
+    }
+    const result = await this.raffleRepository
+      .createQueryBuilder('raffle')
+      .leftJoinAndSelect('raffle.product', 'product')
+      .leftJoinAndSelect('raffle.bid', 'bid')
+      .select([
+        'raffle.raffleId',
+        'product.productImage',
+        'product.productColor',
+        'product.productModel',
+        'product.productName',
+        'product.releasePrice',
+        'raffle.dateEnd',
+        'bid.bidId',
+      ])
+      .orderBy('raffle.dateEnd', 'DESC')
+      .addOrderBy('raffle.raffleId', 'DESC')
+      .take(10)
+      .getMany();
 
+    await this.redis.set('raffles', JSON.stringify(result), 'EX', 10);
+
+    console.log(`normal result`);
+    return result;
+  }
   async bidsave(data) {
     const bid = {
       usersId: data.user,
       bidPrice: data.amount,
       raffleId: data.raffleId,
     };
-    const slave = this.dataSource.createQueryRunner('slave');
-    await slave.manager.save(BidEntity, { data: bid });
-    // await this.bidRepository.save(bid);
+    // const slave = this.dataSource.createQueryRunner('slave');
+    // await slave.manager.save(BidEntity, { data: bid });
+    await this.bidRepository.save(bid);
   }
 
   async save(raffle) {
@@ -48,10 +80,11 @@ export class RaffleRepository {
         'raffle.dateEnd',
       ])
       .where('raffle.isClosed = :isClosed', { isClosed: false })
-      .loadRelationCountAndMap('raffle.bidCount', 'raffle.bid', 'bidCount')
+      //.loadRelationCountAndMap('raffle.bidCount', 'raffle.bid', 'bidCount')
       .orderBy('raffle.dateEnd', 'DESC')
       .addOrderBy('raffle.raffleId', 'DESC')
       // .take(10)
+      .cache(true)
       .getMany();
     return { count: result.length, data: result };
   }

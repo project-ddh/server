@@ -32,8 +32,17 @@ export class RafflesController {
   //bid 쓰기 테스트용
   @Post('bid')
   createBid(@Body() data) {
-    console.log('여기넣음');
+    console.log(data.amount);
     return this.rafflesService.createBid(data);
+  }
+
+  @Get('rediscloud')
+  redisFindAll() {
+    try {
+      return this.rafflesService.redisFindAll();
+    } catch (Error) {
+      this.logger.log(Error);
+    }
   }
 
   @Get()

@@ -33,7 +33,9 @@ export class BidEntity extends CommonEntity {
   /**
    * Bid | M : 1 | Raffle - 래플 1개에 다수의 비즈가 포함된다
    */
-  @ManyToOne(() => RaffleEntity, raffle => raffle.bid)
+  @ManyToOne(() => RaffleEntity, raffle => raffle.bid, {
+    onDelete: 'CASCADE',
+  })
   @JoinColumn({ name: 'raffleId' })
   raffle: RaffleEntity;
 

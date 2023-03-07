@@ -1,7 +1,7 @@
 FROM node:18
 
 WORKDIR /server
-  
+
 COPY . .
 
 RUN npm ci

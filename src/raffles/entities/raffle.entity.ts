@@ -77,6 +77,7 @@ export class RaffleEntity extends CommonEntity {
    */
   @OneToMany(() => BidEntity, bid => bid.raffle, {
     eager: true, // 퍼포먼스 고려한다면 lazy loading도 고려할 것
+    cascade: true,
   })
   @JoinColumn({ name: 'bidId' })
   bid: BidEntity[];

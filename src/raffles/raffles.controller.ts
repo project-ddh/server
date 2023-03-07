@@ -29,6 +29,7 @@ export class RafflesController {
   create(@Body() createRaffleDto: CreateRaffleDto) {
     return this.rafflesService.create(createRaffleDto);
   }
+
   //bid 쓰기 테스트용
   @Post('bid')
   createBid(@Body() data) {

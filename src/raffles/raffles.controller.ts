@@ -32,9 +32,9 @@ export class RafflesController {
 
   //bid 쓰기 테스트용
   @Post('bid')
-  createBid(@Body() data) {
-    console.log(data.amount);
-    return this.rafflesService.createBid(data);
+  async createBid(@Body() data) {
+    //console.log(data.amount);
+    return await this.rafflesService.createBid(data);
   }
 
   @Get('rediscloud')

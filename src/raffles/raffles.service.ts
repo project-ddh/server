@@ -16,9 +16,9 @@ export class RafflesService {
   }
 
   //bid test용
-  createBid(data) {
-    console.log(data);
-    this.raffleRepository.bidsave(data);
+  async createBid(data) {
+    //console.log(data);
+    await this.raffleRepository.bidsave(data);
   }
 
   //redis용

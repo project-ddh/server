@@ -38,8 +38,6 @@ import org.json.JSONObject;
 class TestRunner {
 
     public static GTest test
-    //public static GTest test2
-    //public static GTest test3
     public static HTTPRequest request
     public static Map<String, String> headers = [:]
     public static List<Cookie> cookies = []
@@ -48,8 +46,6 @@ class TestRunner {
     public static void beforeProcess() {
         HTTPRequestControl.setConnectionTimeout(300000)
         test = new GTest(1, "Test Raffle POST API")
-        //test2 = new GTest(2, "Test Raffles GET MAIN API")
-        //test3 = new GTest(3, "Test Raffles GET DETAIL API")
         request = new HTTPRequest()
         grinder.logger.info("before process.")
     }
@@ -57,8 +53,6 @@ class TestRunner {
     @BeforeThread
     public void beforeThread() {
         test.record(this, "test")
-        //test2.record(this, "test2")
-        //test3.record(this, "test3")
         grinder.statistics.delayReports = true
         grinder.logger.info("before thread.")
     }

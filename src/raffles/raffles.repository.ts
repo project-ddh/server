@@ -25,7 +25,7 @@ export class RaffleRepository {
   async redisFindAll() {
     const cachedResult = await this.redis.get('raffles');
     if (cachedResult) {
-      //console.log(`Raffle result from Redis :D `);
+      console.log(`Raffle result from Redis :D `);
       return JSON.parse(cachedResult);
     }
     const master = this.dataSource.createQueryRunner('master');
@@ -56,18 +56,18 @@ export class RaffleRepository {
   }
 
   async bidsave(data) {
-    // const bid = {
-    //   usersId: data.user,
-    //   bidPrice: data.amount,
-    //   raffleId: data.raffleId,
-    // };
-    const bid = new BidEntity();
-    bid.bidPrice = data.amount;
-    bid.usersId = data.user;
-    bid.raffleId = data.raffleId;
-    const master = this.dataSource.createQueryRunner('master');
-    return await master.manager.save(bid);
-    //return await this.bidRepository.save(bid);
+    const bid = {
+      usersId: data.user,
+      bidPrice: data.amount,
+      raffleId: data.raffleId,
+    };
+    // const bid = new BidEntity();
+    // bid.bidPrice = data.amount;
+    // bid.usersId = data.user;
+    // bid.raffleId = data.raffleId;
+    // const master = this.dataSource.createQueryRunner('master');
+    // return await master.manager.save(bid);
+    return await this.bidRepository.save(bid);
   }
 
   async save(raffle) {

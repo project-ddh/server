@@ -19,7 +19,7 @@ import { RedisModule } from '@liaoliaots/nestjs-redis';
       isGlobal: true,
     }),
     TypeOrmModule.forRootAsync(typeOrmConfigAsync),
-    //TypeOrmModule.forRootAsync(typeOrmConfigAsyncReplica),
+    TypeOrmModule.forRootAsync(typeOrmConfigAsyncReplica),
     RedisModule.forRoot({
       config: {
         host: process.env.REDIS_HOST,

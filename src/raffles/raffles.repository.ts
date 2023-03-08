@@ -10,10 +10,10 @@ import Redis from 'ioredis';
 export class RaffleRepository {
   logger: Logger;
   constructor(
-    private readonly dataSource: DataSource,
-    // @InjectRepository(RaffleEntity, 'replica')
-    // private repRaffleRepository: Repository<RaffleEntity>,
-    @InjectRepository(RaffleEntity)
+    //private readonly dataSource: DataSource,
+    @InjectRepository(RaffleEntity, 'replica')
+    private repRaffleRepository: Repository<RaffleEntity>,
+    @InjectRepository(RaffleEntity, 'replica')
     private raffleRepository: Repository<RaffleEntity>,
     @InjectRepository(BidEntity)
     private bidRepository: Repository<BidEntity>,
@@ -28,10 +28,11 @@ export class RaffleRepository {
       console.log(`Raffle result from Redis :D `);
       return JSON.parse(cachedResult);
     }
-    const master = this.dataSource.createQueryRunner('master');
-    const result = await master.manager
-      .createQueryBuilder(RaffleEntity, 'raffle')
-      .setQueryRunner(master)
+    //const master = this.dataSource.createQueryRunner('master');
+    //const result = await master.manager
+    const result = await this.repRaffleRepository
+      .createQueryBuilder('raffle')
+      //.setQueryRunner(master)
       .leftJoin('raffle.product', 'product')
       .leftJoin('raffle.bid', 'bid')
       .select([
@@ -66,7 +67,7 @@ export class RaffleRepository {
     // bid.usersId = data.user;
     // bid.raffleId = data.raffleId;
     // const master = this.dataSource.createQueryRunner('master');
-    // return await master.manager.save(bid);
+    //return await master.manager.save(bid);
     return await this.bidRepository.save(bid);
   }
 
@@ -75,10 +76,10 @@ export class RaffleRepository {
   }
 
   async find() {
-    const slave = this.dataSource.createQueryRunner('slave');
-    const result = await this.dataSource
-      .createQueryBuilder(RaffleEntity, 'raffle')
-      .setQueryRunner(slave)
+    // const slave = this.dataSource.createQueryRunner('slave');
+    // const result = await this.dataSource
+    const result = await this.repRaffleRepository
+      .createQueryBuilder('raffle')
       .leftJoin('raffle.product', 'product')
       .select([
         'raffle.raffleId',

@@ -19,7 +19,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 //         },
 //         slaves: [
 //           {
-//             host: '49.50.163.140',
+//             host: '118.67.134.26',
 //             port: configService.get('RDS_PORT'),
 //             username: configService.get('RDS_USERNAME'),
 //             password: configService.get('RDS_PASSWORD'),

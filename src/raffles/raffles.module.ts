@@ -12,7 +12,7 @@ import { RaffleRepository } from './raffles.repository';
 @Module({
   imports: [
     TypeOrmModule.forFeature([RaffleEntity, UserEntity, BidEntity, UserEntity]),
-    //TypeOrmModule.forFeature([RaffleEntity, UserEntity, BidEntity, UserEntity], 'replica'),
+    TypeOrmModule.forFeature([RaffleEntity, UserEntity, BidEntity, UserEntity], 'replica'),
   ],
   controllers: [RafflesController],
   providers: [RafflesService, RafflesGateway, RaffleRepository],

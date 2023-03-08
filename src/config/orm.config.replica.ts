@@ -6,7 +6,7 @@ export default class TypeOrmReplicaConfig {
     return {
       keepConnectionAlive: true,
       type: 'postgres',
-      host: 'replica.cth7xsz35tjo.ap-northeast-2.rds.amazonaws.com',
+      host: '118.67.134.26',
       port: configService.get('RDS_PORT'),
       username: configService.get('RDS_USERNAME'),
       password: configService.get('RDS_PASSWORD'),

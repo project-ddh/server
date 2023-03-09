@@ -44,14 +44,15 @@ export class RaffleRepository {
         'product.releasePrice',
         'raffle.dateEnd',
       ])
-      .loadRelationCountAndMap('raffle.bidCount', 'raffle.bid', 'bidCount')
+      .where('raffle.isClosed = :isClosed', { isClosed: false })
+      //.loadRelationCountAndMap('raffle.bidCount', 'raffle.bid', 'bidCount')
       .orderBy('raffle.dateEnd', 'DESC')
       .addOrderBy('raffle.raffleId', 'DESC')
-      .take(10)
+      //.take(10)
       .getMany();
 
     await this.redis.set('raffles', JSON.stringify(result), 'EX', 10);
-
+    console.log(result.length);
     //console.log(`normal result`);
     return result;
   }
@@ -139,7 +140,7 @@ export class RaffleRepository {
       .orderBy('raffle.dateEnd', 'DESC')
       .addOrderBy('raffle.raffleId', 'DESC')
       .getOne();
-    if (!result) this.logger.log('아이디가없습니다');
+    //if (!result) this.logger.log('아이디가없습니다');
     return { data: result, raffleHistory: {} };
   }
 }

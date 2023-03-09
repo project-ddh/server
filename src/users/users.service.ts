@@ -9,7 +9,7 @@ import { JwtPayloadDto } from './jwt/jwtPayload.dto';
 @Injectable()
 export class UsersService {
   constructor(
-    @InjectRepository(UserEntity)
+    @InjectRepository(UserEntity, 'login')
     private readonly userRepository: Repository<UserEntity>,
     private readonly jwtService: JwtService,
   ) {}

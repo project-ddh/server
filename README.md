@@ -12,11 +12,6 @@
 
    5. 기술 스택 : nestjs, socket.io, docker, nginx, AWS-ELB, 깃허브액션
 
-2. 와이어 프레임 :
-      <p>
-   <img src = ''>
-   </p>
-
 3. 백엔드 아키텍쳐:
       <p>
    <img src = ''>

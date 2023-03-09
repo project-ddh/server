@@ -59,6 +59,7 @@ export class RaffleRepository {
 
   async bidsave(data) {
     const bid = {
+      bidSize: data.bidSize,
       usersId: data.user,
       bidPrice: data.amount,
       raffleId: data.raffleId,

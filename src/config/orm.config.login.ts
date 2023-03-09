@@ -14,7 +14,7 @@ export default class TypeOrmReplicaConfig {
       entities: [__dirname + '/../**/*.entity{.ts,.js}'],
       synchronize: true,
       logging: false,
-      poolSize: 8,
+      //poolSize: 8,
     };
   }
 }

@@ -13,7 +13,7 @@ export class RaffleRepository {
     //private readonly dataSource: DataSource,
     @InjectRepository(RaffleEntity, 'replica')
     private repRaffleRepository: Repository<RaffleEntity>,
-    @InjectRepository(RaffleEntity, 'replica')
+    @InjectRepository(RaffleEntity)
     private raffleRepository: Repository<RaffleEntity>,
     @InjectRepository(BidEntity)
     private bidRepository: Repository<BidEntity>,
@@ -68,11 +68,11 @@ export class RaffleRepository {
     // bid.raffleId = data.raffleId;
     // const master = this.dataSource.createQueryRunner('master');
     //return await master.manager.save(bid);
-    return await this.bidRepository.save(bid);
+    await this.bidRepository.save(bid);
   }
 
   async save(raffle) {
-    return await this.raffleRepository.save(raffle);
+    await this.raffleRepository.save(raffle);
   }
 
   async find() {
@@ -122,7 +122,7 @@ export class RaffleRepository {
   // }
 
   async findOne(id: number) {
-    const result = await this.raffleRepository
+    const result = await this.repRaffleRepository
       .createQueryBuilder('raffle')
       .leftJoinAndSelect('raffle.product', 'product')
       .where('raffle.raffleId = :id', { id: id })

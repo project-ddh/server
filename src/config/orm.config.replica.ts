@@ -13,7 +13,7 @@ export default class TypeOrmReplicaConfig {
       database: configService.get('RDS_DATABASE_NAME'),
       entities: [__dirname + '/../**/*.entity{.ts,.js}'],
       synchronize: true,
-      logging: true,
+      logging: false,
     };
   }
 }

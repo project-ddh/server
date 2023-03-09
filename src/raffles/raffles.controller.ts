@@ -27,14 +27,14 @@ export class RafflesController {
 
   @Post()
   create(@Body() createRaffleDto: CreateRaffleDto) {
-    return this.rafflesService.create(createRaffleDto);
+    this.rafflesService.create(createRaffleDto);
   }
 
   //bid 쓰기 테스트용
   @Post('bid')
   async createBid(@Body() data) {
     //console.log(data.amount);
-    return await this.rafflesService.createBid(data);
+    await this.rafflesService.createBid(data);
   }
 
   @Get('rediscloud')
@@ -45,6 +45,8 @@ export class RafflesController {
       this.logger.log(Error);
     }
   }
+
+  //열려있는 경매중에서 어떠어떠한 조건에 맞는 프로덕트 찾기
 
   @Get()
   findAll() {

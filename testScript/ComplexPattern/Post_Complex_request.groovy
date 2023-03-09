@@ -24,9 +24,6 @@ class TestRunner {
     public static HTTPRequest request
     public static Map<String, String> headers = [:]
     public static List<Cookie> cookies = []
-    public static final int CYCLES = 3
-    public static final int REQUESTS_PER_CYCLE_MIN = 1
-    public static final int REQUESTS_PER_CYCLE_MAX = 10
 
     @BeforeProcess
     public static void beforeProcess() {
@@ -52,8 +49,8 @@ class TestRunner {
 
     @Test
     public void test() {
-        for (int i = 0; i < 2; i++) {
-			for (int j = 0; j < 5; j++) {
+        for (int i = 0; i < 3; i++) {
+			for (int j = 0; j < 10; j++) {
 				int raffleId = new Random().nextInt(10000 - 9001) + 9001;
 				int user = new Random().nextInt(200000 - 1) + 1;
 				int amount = (new Random().nextInt(901) + 100) * 1000;

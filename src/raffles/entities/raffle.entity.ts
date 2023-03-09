@@ -1,7 +1,15 @@
 import { UserEntity } from './../../users/entities/user.entity';
 import { ApiProperty } from '@nestjs/swagger';
 import { CommonEntity } from 'src/common/entities/common.entities';
-import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  BaseEntity,
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import { ProductEntity } from 'src/products/entities/product.entity';
 import { BidEntity } from 'src/bids/entities/bid.entity';
 
@@ -69,6 +77,7 @@ export class RaffleEntity extends CommonEntity {
    */
   @OneToMany(() => BidEntity, bid => bid.raffle, {
     eager: true, // 퍼포먼스 고려한다면 lazy loading도 고려할 것
+    cascade: true,
   })
   @JoinColumn({ name: 'bidId' })
   bid: BidEntity[];

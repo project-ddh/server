@@ -1,14 +1,15 @@
-# 베이스 지정 
-FROM node:19
+FROM node:18
 
+WORKDIR /server
 
-#COPY NODE
-# COPY [파일명] ./[복사될 도커 경로]
-COPY package.json ./, .env ./
+COPY . .
 
-# docker run 실행시 되는
 RUN npm i
 
-# App 실행
-CMD [npm run start]
+RUN npm install pm2 -g
 
+RUN npm run build
+
+COPY .env /server/dist
+
+ENTRYPOINT [ "pm2-runtime","start","/server/dist/main.js","-i","max"]

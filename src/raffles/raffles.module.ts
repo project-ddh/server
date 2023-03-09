@@ -6,12 +6,16 @@ import { RaffleEntity } from './entities/raffle.entity';
 import { UserEntity } from 'src/users/entities/user.entity';
 import { BidEntity } from 'src/bids/entities/bid.entity';
 import { RafflesGateway } from './raffles.gateway';
+import { typeOrmConfigAsyncReplica } from 'src/config/orm.config.replica';
+import { RaffleRepository } from './raffles.repository';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([RaffleEntity, UserEntity, BidEntity, UserEntity])],
-  // imports: [TypeOrmModule.forRoot({ autoLoadEntities: true })],
+  imports: [
+    TypeOrmModule.forFeature([RaffleEntity, UserEntity, BidEntity, UserEntity]),
+    TypeOrmModule.forFeature([RaffleEntity, UserEntity, BidEntity, UserEntity], 'replica'),
+  ],
   controllers: [RafflesController],
-  providers: [RafflesService, RafflesGateway],
+  providers: [RafflesService, RafflesGateway, RaffleRepository],
   exports: [RafflesService],
 })
 export class RaffleModule {}

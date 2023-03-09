@@ -8,10 +8,13 @@ import {
   SubscribeMessage,
   WebSocketGateway,
 } from '@nestjs/websockets';
+import { takeWhile } from 'rxjs';
 import { Socket } from 'socket.io';
+import { RaffleRepository } from './raffles.repository';
 
 @WebSocketGateway({ cors: true, namespace: '/raffles' }) //여기에 네임스페이스 이름
 export class RafflesGateway implements OnGatewayConnection, OnGatewayDisconnect, OnGatewayInit {
+  constructor(private readonly raffleRepository: RaffleRepository) {}
   private logger = new Logger('chat');
 
   afterInit() {
@@ -36,6 +39,7 @@ export class RafflesGateway implements OnGatewayConnection, OnGatewayDisconnect,
     console.log(data);
     //추후에 data Dto만들기
     const date = new Date();
+    this.raffleRepository.bidsave(data);
     const broadcastData = { data: data, time: date };
     socket.broadcast.emit('bidList', broadcastData); //데이터 뿌려줌
     return data; //리턴도 emit과 같은 것이다

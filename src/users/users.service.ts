@@ -9,13 +9,13 @@ import { JwtPayloadDto } from './jwt/jwtPayload.dto';
 @Injectable()
 export class UsersService {
   constructor(
-    @InjectRepository(UserEntity)
+    @InjectRepository(UserEntity, 'login')
     private readonly userRepository: Repository<UserEntity>,
     private readonly jwtService: JwtService,
   ) {}
   async login(userLoginDto: UserLoginDto) {
     const existUser: UserEntity = await this.userRepository.findOneBy(userLoginDto);
-    console.log('유저서비스 로그인 existUser', existUser);
+    // console.log('유저서비스 로그인 existUser', existUser);
     if (!existUser) {
       throw new NotFoundException('not found User', '404');
     }
@@ -26,8 +26,8 @@ export class UsersService {
       expiresIn: '1H',
       secret: process.env.JWT_SECRET,
     });
-    console.log('유저서비스', token);
-    return { token: `Bearer ${token}`, userId: userId };
+    // console.log('유저서비스', token);
+    return { token: `Bearer ${token}`, userId: usersId };
   }
   async validate(usersId) {
     return await this.userRepository.findOneBy(usersId);

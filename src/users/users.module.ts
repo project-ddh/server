@@ -9,7 +9,7 @@ import { JwtStrategy } from './jwt/jwt-strategy';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([UserEntity]),
+    TypeOrmModule.forFeature([UserEntity], 'login'),
     JwtModule,
     PassportModule.register({ defaultStrategy: 'jwt', session: false }),
   ],

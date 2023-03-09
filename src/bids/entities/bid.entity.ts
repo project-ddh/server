@@ -13,22 +13,29 @@ export class BidEntity extends CommonEntity {
   @PrimaryGeneratedColumn('increment')
   bidId: number;
 
-  @ApiProperty({ description: `Biding shoes size`, required: true })
-  @Column({ type: 'integer' })
+  @ApiProperty({ description: `Biding shoes size`, required: false })
+  @Column({ type: 'integer', nullable: true })
   bidSize: number;
 
   @ApiProperty({ description: `Bid price`, required: true })
   @Column({ type: 'integer' })
   bidPrice: number;
 
-  @ApiProperty({ description: `Bid Quantity`, required: true })
-  @Column({ type: 'integer' })
+  @ApiProperty({ description: `Bid Quantity`, required: false })
+  @Column({ type: 'integer', nullable: true })
   bidQuantity: number;
 
+  @Column({ type: 'integer' })
+  usersId: number;
+
+  @Column({ type: 'integer' })
+  raffleId: number;
   /**
    * Bid | M : 1 | Raffle - 래플 1개에 다수의 비즈가 포함된다
    */
-  @ManyToOne(() => RaffleEntity, raffle => raffle.bid)
+  @ManyToOne(() => RaffleEntity, raffle => raffle.bid, {
+    onDelete: 'CASCADE',
+  })
   @JoinColumn({ name: 'raffleId' })
   raffle: RaffleEntity;
 

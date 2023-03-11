@@ -14,7 +14,12 @@ export class UsersService {
     private readonly jwtService: JwtService,
   ) {}
   async login(userLoginDto: UserLoginDto) {
-    const existUser: UserEntity = await this.userRepository.findOneBy(userLoginDto);
+    const existUser = await this.userRepository //.findOneBy(userLoginDto);
+      .createQueryBuilder('user')
+      .select(['user.usersId', 'user.userId'])
+      .where('user.userId = :id', { id: userLoginDto.userId })
+      .andWhere('user.password = :password', { password: userLoginDto.password })
+      .getOne();
     // console.log('유저서비스 로그인 existUser', existUser);
     if (!existUser) {
       throw new NotFoundException('not found User', '404');

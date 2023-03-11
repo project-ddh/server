@@ -41,7 +41,7 @@ export default class TypeOrmConfig {
       password: configService.get('RDS_PASSWORD'),
       database: configService.get('RDS_DATABASE_NAME'),
       entities: [__dirname + '/../**/*.entity{.ts,.js}'],
-      synchronize: true,
+      synchronize: false,
       logging: false,
       //poolSize: 8,
       // extra: {

@@ -20,13 +20,13 @@ export class UsersService {
       .where('user.userId = :id', { id: userLoginDto.userId })
       .andWhere('user.password = :password', { password: userLoginDto.password })
       .getOne();
-    // console.log('유저서비스 로그인 existUser', existUser);
+    //console.log('유저서비스 로그인 existUser', existUser);
     if (!existUser) {
       throw new NotFoundException('not found User', '404');
     }
     const { usersId, userId } = existUser;
     const payload: JwtPayloadDto = { usersId, userId };
-    console.log('유저서비스 페이로드', payload);
+    //console.log('유저서비스 페이로드', payload);
     const token: string = this.jwtService.sign(payload, {
       expiresIn: '1H',
       secret: process.env.JWT_SECRET,

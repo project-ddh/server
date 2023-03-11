@@ -28,7 +28,7 @@ export class RaffleRepository {
   async redisFindAll() {
     const cachedResult = await this.redis.get('raffles');
     if (cachedResult) {
-      console.log(`Raffle result from Redis :D `);
+      // console.log(`Raffle result from Redis :D `);
       return JSON.parse(cachedResult);
     }
     //const master = this.dataSource.createQueryRunner('master');
@@ -48,14 +48,13 @@ export class RaffleRepository {
         'raffle.dateEnd',
       ])
       .where('raffle.isClosed = :isClosed', { isClosed: false })
-      //.loadRelationCountAndMap('raffle.bidCount', 'raffle.bid', 'bidCount')
       .orderBy('raffle.dateEnd', 'DESC')
       .addOrderBy('raffle.raffleId', 'DESC')
       .take(10)
       .getMany();
 
     await this.redis.set('raffles', JSON.stringify(result));
-    console.log(result.length);
+    // console.log(result.length);
     //console.log(`normal result`);
     return result;
   }
@@ -137,7 +136,7 @@ export class RaffleRepository {
   async findOne(id: number) {
     const result = await this.repRaffleRepository
       .createQueryBuilder('raffle')
-      .leftJoinAndSelect('raffle.product', 'product')
+      .leftJoin('raffle.product', 'product')
       .where('raffle.raffleId = :id', { id: id })
       .select([
         'raffle.raffleId',

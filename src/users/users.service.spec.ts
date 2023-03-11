@@ -49,7 +49,6 @@ describe('usersService', () => {
     jest.spyOn(userRepository, 'findOneBy').mockResolvedValue({ usersId: 1, userId: 'user1' });
     jest.spyOn(jwtService, 'sign').mockReturnValue(jwtToken);
     const result = await usersService.login(userLoginDto);
-    console.log(result);
     expect(result).toEqual({ token: `Bearer ${jwtToken}`, userId: 1 });
   });
 });

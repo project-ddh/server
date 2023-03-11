@@ -16,7 +16,7 @@ export class BidsService {
       .select()
       .where('bid.bidSize = :size', { size: size })
       .take(2000)
-      .orderBy('bid.createdAt', 'DESC')
+      //.orderBy('bid.createdAt', 'DESC')
       .getMany();
 
     return result;

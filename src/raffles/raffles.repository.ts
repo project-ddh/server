@@ -17,6 +17,9 @@ export class RaffleRepository {
     private raffleRepository: Repository<RaffleEntity>,
     @InjectRepository(BidEntity)
     private bidRepository: Repository<BidEntity>,
+    @InjectRepository(BidEntity, 'replica')
+    private repBidRepository: Repository<BidEntity>,
+
     @InjectRedis() private readonly redis: Redis,
   ) {
     this.logger = new Logger('raffels');
@@ -48,10 +51,10 @@ export class RaffleRepository {
       //.loadRelationCountAndMap('raffle.bidCount', 'raffle.bid', 'bidCount')
       .orderBy('raffle.dateEnd', 'DESC')
       .addOrderBy('raffle.raffleId', 'DESC')
-      //.take(10)
+      .take(10)
       .getMany();
 
-    await this.redis.set('raffles', JSON.stringify(result), 'EX', 10);
+    await this.redis.set('raffles', JSON.stringify(result));
     console.log(result.length);
     //console.log(`normal result`);
     return result;
@@ -69,8 +72,16 @@ export class RaffleRepository {
     // bid.usersId = data.user;
     // bid.raffleId = data.raffleId;
     // const master = this.dataSource.createQueryRunner('master');
-    //return await master.manager.save(bid);
-    await this.bidRepository.save(bid);
+    // return await master.manager.save(bid);
+    const result = await this.bidRepository.save(bid);
+    // try {
+    //   const result = await this.bidRepository.save(bid);
+    //   if (result === undefined || result === null) {
+    //     await this.repBidRepository.save(bid);
+    //   }
+    // } catch {
+    //   await this.repBidRepository.save(bid);
+    // }
   }
 
   async save(raffle) {

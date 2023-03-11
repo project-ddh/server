@@ -35,7 +35,7 @@ export default class TypeOrmConfig {
     return {
       keepConnectionAlive: true,
       type: 'postgres',
-      host: configService.get('RDS_HOST'),
+      host: 'write.prachang.shop',
       port: configService.get('RDS_PORT'),
       username: configService.get('RDS_USERNAME'),
       password: configService.get('RDS_PASSWORD'),

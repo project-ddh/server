@@ -72,7 +72,12 @@ export class RaffleRepository {
     // bid.raffleId = data.raffleId;
     // const master = this.dataSource.createQueryRunner('master');
     // return await master.manager.save(bid);
-    const result = await this.bidRepository.save(bid);
+    const result = await this.bidRepository //.save(bid);
+      .createQueryBuilder()
+      .insert()
+      .into('Bid', ['bidSize', 'usersId', 'bidPrice', 'raffleId'])
+      .values(bid)
+      .execute();
     // try {
     //   const result = await this.bidRepository.save(bid);
     //   if (result === undefined || result === null) {

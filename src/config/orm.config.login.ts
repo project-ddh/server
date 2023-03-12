@@ -6,7 +6,7 @@ export default class TypeOrmReplicaConfig {
     return {
       keepConnectionAlive: true,
       type: 'postgres',
-      host: 'read.prachang.shop',
+      host: 'read2.prachang.shop',
       port: configService.get('RDS_PORT'),
       username: configService.get('RDS_USERNAME'),
       password: configService.get('RDS_PASSWORD'),

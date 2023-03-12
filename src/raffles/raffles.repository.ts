@@ -139,6 +139,12 @@ export class RaffleRepository {
   // }
 
   async findOne(id: number) {
+    // const bidCount = await this.bidRepository
+    //   .createQueryBuilder('bid')
+    //   .select('count(*)')
+    //   .where('bid.raffleId = :id', { id })
+    //   .getRawMany();
+
     const result = await this.repRaffleRepository
       .createQueryBuilder('raffle')
       .leftJoin('raffle.product', 'product')
@@ -157,7 +163,7 @@ export class RaffleRepository {
       .addOrderBy('raffle.raffleId', 'DESC')
       .getOne();
     //if (!result) this.logger.log('아이디가없습니다');
-    return { data: result, raffleHistory: {} };
+    return { data: result }; //bidCount };
   }
 }
 

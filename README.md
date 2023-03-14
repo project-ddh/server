@@ -1,4 +1,4 @@
-# Project <Stock Pyramid>
+# Project \<Stock Pyramid\>
 
 <img src= "https://user-images.githubusercontent.com/87453411/224883895-22834b83-96b4-41cd-b3fc-886dca807821.png" width ="70%">
 

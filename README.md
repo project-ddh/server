@@ -1,13 +1,24 @@
-# Stock Pyramid
+# Project: Stock Pyramid
 
-![pyramid_logo|width=300](https://user-images.githubusercontent.com/87453411/224883895-22834b83-96b4-41cd-b3fc-886dca807821.png)
+<img src= "https://user-images.githubusercontent.com/87453411/224883895-22834b83-96b4-41cd-b3fc-886dca807821.png" width ="70%">
 
-# **프로젝트**
+경매 이벤트의 **대용량 트래픽을 처리**하기 위한 node.js 기반 어플리케이션 시스템 구축 프로젝트
 
-> Stock Pyramid는 경매 이벤트의 대용량 트래픽을 처리하기 위한 node.js 기반 어플리케이션 시스템 구축 프로젝트입니다
+프로젝트 기간 : 2023.02.02 - 2023.03.15(6 weeks)
 
+팀원
+- Daniel(Backend) : https://github.com/jhoon8903 
+- Hugo(Backend) : https://github.com/thursdaycurry/
+- David(Backend) : https://github.com/jinhwan7
 
-keyword : #대용량 트래픽 처리 #검색 속도 향상 #성능 테스트 #nestjs #DB이중화
+```
+#대용량 트래픽 처리 
+#검색 속도 향상 
+#성능 테스트 
+#nestjs 
+#DB이중화
+```
+
 
 
 ## 🔺 기획 배경
@@ -25,18 +36,11 @@ keyword : #대용량 트래픽 처리 #검색 속도 향상 #성능 테스트 #n
     - 상세 검색 : 사이즈 별 입찰(bid) 데이터
 - 로그인
 
-## 🔺 생성 데이터
 
-- 테스트로 생성된 총 데이터량 약 1TB
-- 경매 데이터(Raffle) : 1만
-- 입찰 데이터(Bid) : 1,200만
-- 상품 데이터(Product) : 1만
-- 유저 데이터(User) : 20만
 
 ## 🔺 서비스 아키텍처 & 기술 도입 배경
 
-![pyramid_trafficmap](https://user-images.githubusercontent.com/87453411/224884522-a02e07d2-a8b5-4cf0-93cd-11f4f4148c3e.png)
-![pyramid_architecture](https://user-images.githubusercontent.com/87453411/224884534-74df6981-7511-4ea7-b62d-8f6e5680b07e.png)
+<img src= "https://user-images.githubusercontent.com/87453411/224884534-74df6981-7511-4ea7-b62d-8f6e5680b07e.png" width ="70%">
 
 |분류|기술|
 |---|---|
@@ -48,6 +52,14 @@ keyword : #대용량 트래픽 처리 #검색 속도 향상 #성능 테스트 #n
 |Caching|<img src="https://img.shields.io/badge/redis-DC382D?style=for-the-badge&logo=redis&logoColor=white">
 |Monitor|<img src="https://img.shields.io/badge/netdata-010101?style=for-the-badge&logo=netdata&logoColor=white">
 |Test|<img src="https://img.shields.io/badge/ngrinder-ff7f00?style=for-the-badge&logo=ngrinder&logoColor=white">
+
+### 🔺 생성 데이터
+<img src= "https://user-images.githubusercontent.com/87453411/224884522-a02e07d2-a8b5-4cf0-93cd-11f4f4148c3e.png" width ="70%">
+- 테스트로 생성된 총 데이터량 약 1TB
+- 경매 데이터(Raffle) : 1만
+- 입찰 데이터(Bid) : 1,200만
+- 상품 데이터(Product) : 1만
+- 유저 데이터(User) : 20만
 
 ### 프레임워크(nest.js)
 

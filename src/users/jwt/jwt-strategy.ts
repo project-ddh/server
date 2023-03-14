@@ -14,10 +14,10 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     });
   }
   async validate(payload: JwtPayloadDto) {
-    console.log('jwt 전략 validate', payload);
+    // console.log('jwt 전략 validate', payload);
     const user = await this.userService.validate(payload.usersId);
 
-    console.log('jwt전략validate 유저', user);
+    // console.log('jwt전략validate 유저', user);
     if (!user) {
       throw new UnauthorizedException('invalid token');
     }

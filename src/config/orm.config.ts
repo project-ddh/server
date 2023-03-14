@@ -35,15 +35,15 @@ export default class TypeOrmConfig {
     return {
       keepConnectionAlive: true,
       type: 'postgres',
-      host: configService.get('RDS_HOST'),
+      host: 'write.prachang.shop',
       port: configService.get('RDS_PORT'),
       username: configService.get('RDS_USERNAME'),
       password: configService.get('RDS_PASSWORD'),
       database: configService.get('RDS_DATABASE_NAME'),
       entities: [__dirname + '/../**/*.entity{.ts,.js}'],
-      synchronize: true,
+      synchronize: false,
       logging: false,
-      poolSize: 8,
+      //poolSize: 8,
       // extra: {
       // max: 10,
       //   connectionLimit: 1,

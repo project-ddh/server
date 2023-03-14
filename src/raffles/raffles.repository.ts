@@ -17,6 +17,9 @@ export class RaffleRepository {
     private raffleRepository: Repository<RaffleEntity>,
     @InjectRepository(BidEntity)
     private bidRepository: Repository<BidEntity>,
+    @InjectRepository(BidEntity, 'replica')
+    private repBidRepository: Repository<BidEntity>,
+
     @InjectRedis() private readonly redis: Redis,
   ) {
     this.logger = new Logger('raffels');
@@ -25,7 +28,7 @@ export class RaffleRepository {
   async redisFindAll() {
     const cachedResult = await this.redis.get('raffles');
     if (cachedResult) {
-      console.log(`Raffle result from Redis :D `);
+      // console.log(`Raffle result from Redis :D `);
       return JSON.parse(cachedResult);
     }
     //const master = this.dataSource.createQueryRunner('master');
@@ -45,20 +48,20 @@ export class RaffleRepository {
         'raffle.dateEnd',
       ])
       .where('raffle.isClosed = :isClosed', { isClosed: false })
-      //.loadRelationCountAndMap('raffle.bidCount', 'raffle.bid', 'bidCount')
       .orderBy('raffle.dateEnd', 'DESC')
       .addOrderBy('raffle.raffleId', 'DESC')
-      //.take(10)
+      .take(10)
       .getMany();
 
-    await this.redis.set('raffles', JSON.stringify(result), 'EX', 10);
-    console.log(result.length);
+    await this.redis.set('raffles', JSON.stringify(result));
+    // console.log(result.length);
     //console.log(`normal result`);
     return result;
   }
 
   async bidsave(data) {
     const bid = {
+      bidSize: data.bidSize,
       usersId: data.user,
       bidPrice: data.amount,
       raffleId: data.raffleId,
@@ -68,8 +71,21 @@ export class RaffleRepository {
     // bid.usersId = data.user;
     // bid.raffleId = data.raffleId;
     // const master = this.dataSource.createQueryRunner('master');
-    //return await master.manager.save(bid);
-    await this.bidRepository.save(bid);
+    // return await master.manager.save(bid);
+    const result = await this.bidRepository //.save(bid);
+      .createQueryBuilder()
+      .insert()
+      .into('Bid', ['bidSize', 'usersId', 'bidPrice', 'raffleId'])
+      .values(bid)
+      .execute();
+    // try {
+    //   const result = await this.bidRepository.save(bid);
+    //   if (result === undefined || result === null) {
+    //     await this.repBidRepository.save(bid);
+    //   }
+    // } catch {
+    //   await this.repBidRepository.save(bid);
+    // }
   }
 
   async save(raffle) {
@@ -123,9 +139,15 @@ export class RaffleRepository {
   // }
 
   async findOne(id: number) {
+    // const bidCount = await this.bidRepository
+    //   .createQueryBuilder('bid')
+    //   .select('count(*)')
+    //   .where('bid.raffleId = :id', { id })
+    //   .getRawMany();
+
     const result = await this.repRaffleRepository
       .createQueryBuilder('raffle')
-      .leftJoinAndSelect('raffle.product', 'product')
+      .leftJoin('raffle.product', 'product')
       .where('raffle.raffleId = :id', { id: id })
       .select([
         'raffle.raffleId',
@@ -141,7 +163,7 @@ export class RaffleRepository {
       .addOrderBy('raffle.raffleId', 'DESC')
       .getOne();
     //if (!result) this.logger.log('아이디가없습니다');
-    return { data: result, raffleHistory: {} };
+    return { data: result }; //bidCount };
   }
 }
 

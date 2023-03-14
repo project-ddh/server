@@ -11,7 +11,7 @@ export class RafflesService {
   constructor(private readonly raffleRepository: RaffleRepository) {}
 
   create(raffle) {
-    console.log(`raffle create: ${JSON.stringify(raffle)}`);
+    // console.log(`raffle create: ${JSON.stringify(raffle)}`);
     return this.raffleRepository.save(raffle);
   }
 

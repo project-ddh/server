@@ -56,6 +56,7 @@
     "mysql2": "^2.3.3",
     "passport-jwt": "^4.0.1",
     "pg": "^8.9.0",
+    "pm2": "^5.2.2",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.2.0",
     "socket.io": "^4.6.0",

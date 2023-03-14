@@ -1,28 +1,14 @@
 # Stock Pyramid
 
-![002](https://user-images.githubusercontent.com/87453411/224883895-22834b83-96b4-41cd-b3fc-886dca807821.png)
+![pyramid_logo|width=300](https://user-images.githubusercontent.com/87453411/224883895-22834b83-96b4-41cd-b3fc-886dca807821.png)
 
 # **프로젝트**
 
-Stock Pyramid는 경매 이벤트의 대용량 트래픽을 처리하기 위한 node.js 기반 
-어플리케이션 시스템 구축 프로젝트입니다
+> Stock Pyramid는 경매 이벤트의 대용량 트래픽을 처리하기 위한 node.js 기반 어플리케이션 시스템 구축 프로젝트입니다
 
-|분류|기술|
-|---|---|
-|Language|<img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=white">
-|FrameWork|<img src="https://img.shields.io/badge/nestjs-E0234E?style=for-the-badge&logo=nestjs&logoColor=white">
-|DB|<img src="https://img.shields.io/badge/postgresql-4169E1?style=for-the-badge&logo=postgresql&logoColor=white"><img src="https://img.shields.io/badge/typeorm-ff7f00?style=for-the-badge&logo=typeorm&logoColor=white">
-|Server|<img src="https://img.shields.io/badge/naver-03C75A?style=for-the-badge&logo=naver&logoColor=white">
-|Socket|<img src="https://img.shields.io/badge/socket.io-010101?style=for-the-badge&logo=socket.io&logoColor=white">
-|Caching|<img src="https://img.shields.io/badge/redis-DC382D?style=for-the-badge&logo=redis&logoColor=white">
-|Monitor|<img src="https://img.shields.io/badge/netdata-010101?style=for-the-badge&logo=netdata&logoColor=white">
-|Test|<img src="https://img.shields.io/badge/ngrinder-ff7f00?style=for-the-badge&logo=ngrinder&logoColor=white">
 
 keyword : #대용량 트래픽 처리 #검색 속도 향상 #성능 테스트 #nestjs #DB이중화
 
-ip : 118.67.143.29/raffles
-
----
 
 ## 🔺 기획 배경
 
@@ -49,9 +35,19 @@ ip : 118.67.143.29/raffles
 
 ## 🔺 서비스 아키텍처 & 기술 도입 배경
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/d9bc3189-f398-45a8-b966-d3198e603e21/Untitled.png)
+![pyramid_trafficmap](https://user-images.githubusercontent.com/87453411/224884522-a02e07d2-a8b5-4cf0-93cd-11f4f4148c3e.png)
+![pyramid_architecture](https://user-images.githubusercontent.com/87453411/224884534-74df6981-7511-4ea7-b62d-8f6e5680b07e.png)
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/6221560e-f37b-41ab-a229-b6fa57069149/Untitled.png)
+|분류|기술|
+|---|---|
+|Language|<img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=white">
+|FrameWork|<img src="https://img.shields.io/badge/nestjs-E0234E?style=for-the-badge&logo=nestjs&logoColor=white">
+|DB|<img src="https://img.shields.io/badge/postgresql-4169E1?style=for-the-badge&logo=postgresql&logoColor=white"><img src="https://img.shields.io/badge/typeorm-ff7f00?style=for-the-badge&logo=typeorm&logoColor=white">
+|Server|<img src="https://img.shields.io/badge/naver-03C75A?style=for-the-badge&logo=naver&logoColor=white">
+|Socket|<img src="https://img.shields.io/badge/socket.io-010101?style=for-the-badge&logo=socket.io&logoColor=white">
+|Caching|<img src="https://img.shields.io/badge/redis-DC382D?style=for-the-badge&logo=redis&logoColor=white">
+|Monitor|<img src="https://img.shields.io/badge/netdata-010101?style=for-the-badge&logo=netdata&logoColor=white">
+|Test|<img src="https://img.shields.io/badge/ngrinder-ff7f00?style=for-the-badge&logo=ngrinder&logoColor=white">
 
 ### 프레임워크(nest.js)
 

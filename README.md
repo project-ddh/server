@@ -1,8 +1,6 @@
 # Stock Pyramid
 
-![pyramid_logo.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/6e279517-6856-4db6-a130-b8d9a2b15f03/pyramid_logo.png)
-
-![스크린샷 2023-03-10 오전 8.42.50.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/0d17e745-0a6b-412d-b45f-0d34dfe3b104/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2023-03-10_%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB_8.42.50.png)
+![002](https://user-images.githubusercontent.com/87453411/224883895-22834b83-96b4-41cd-b3fc-886dca807821.png)
 
 # **프로젝트**
 

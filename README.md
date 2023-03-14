@@ -7,7 +7,16 @@
 Stock Pyramid는 경매 이벤트의 대용량 트래픽을 처리하기 위한 node.js 기반 
 어플리케이션 시스템 구축 프로젝트입니다
 
-[server/README.md at main · project-ddh/server](https://github.com/project-ddh/server/blob/main/README.md)
+|분류|기술|
+|---|---|
+|Language|<img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=white">
+|FrameWork|<img src="https://img.shields.io/badge/nestjs-E0234E?style=for-the-badge&logo=nestjs&logoColor=white">
+|DB|<img src="https://img.shields.io/badge/postgresql-4169E1?style=for-the-badge&logo=postgresql&logoColor=white"><img src="https://img.shields.io/badge/typeorm-ff7f00?style=for-the-badge&logo=typeorm&logoColor=white">
+|Server|<img src="https://img.shields.io/badge/naver-03C75A?style=for-the-badge&logo=naver&logoColor=white">
+|Socket|<img src="https://img.shields.io/badge/socket.io-010101?style=for-the-badge&logo=socket.io&logoColor=white">
+|Caching|<img src="https://img.shields.io/badge/redis-DC382D?style=for-the-badge&logo=redis&logoColor=white">
+|Monitor|<img src="https://img.shields.io/badge/netdata-010101?style=for-the-badge&logo=netdata&logoColor=white">
+|Test|<img src="https://img.shields.io/badge/ngrinder-ff7f00?style=for-the-badge&logo=ngrinder&logoColor=white">
 
 keyword : #대용량 트래픽 처리 #검색 속도 향상 #성능 테스트 #nestjs #DB이중화
 

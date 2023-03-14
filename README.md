@@ -2,7 +2,15 @@
 
 <img src= "https://user-images.githubusercontent.com/87453411/224883895-22834b83-96b4-41cd-b3fc-886dca807821.png" width ="70%">
 
-경매 이벤트의 **대용량 트래픽을 처리**하기 위한 node.js 기반 어플리케이션 시스템 구축 프로젝트
+스니커즈 경매 경매 이벤트 **대용량 트래픽을 처리**하기 위한 node.js 기반 어플리케이션 시스템 구축 프로젝트
+
+`#대용량 트래픽 처리`
+`#검색 속도 향상`
+`#성능 테스트`
+`#nestjs`
+`#DB이중화`
+
+---
 
 팀원
 - Daniel(Backend) : https://github.com/jhoon8903 
@@ -10,14 +18,6 @@
 - David(Backend) : https://github.com/jinhwan7
 
 프로젝트 기간 : 2023.02.02 - 2023.03.15(6 weeks)
-
-```
-#대용량 트래픽 처리 
-#검색 속도 향상 
-#성능 테스트 
-#nestjs 
-#DB이중화
-```
 
 ## 🔺 기획 배경
 
